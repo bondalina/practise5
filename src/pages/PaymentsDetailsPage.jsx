@@ -1,5 +1,5 @@
 import { Link, useParams, Outlet, useLocation } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Suspense } from "react";
 import PaymentInfo from "../components/PaymentInfo";
 import { getPaymentById } from "../components/payments-api";
 
@@ -50,7 +50,9 @@ export default function PaymentsDetailsPage() {
         </li>
       </ul>
 
-      <Outlet />
+      <Suspense fallback={<b>Please wait until loading</b>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 }
